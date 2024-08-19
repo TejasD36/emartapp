@@ -24,6 +24,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final passwordController = TextEditingController();
   final rePasswordController = TextEditingController();
 
+  bool? isCheck = false;
+
   @override
   Widget build(BuildContext context) {
     return bgWidget(
@@ -63,9 +65,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     Row(
                       children: [
                         Checkbox(
-                            value: false,
-                            checkColor: redColor,
-                            onChanged:(newValue){},
+                            value: isCheck,
+                            activeColor: redColor,
+                            checkColor: whiteColor,
+                            onChanged:(newValue){
+                              setState(() {
+                                isCheck = newValue;
+                              });
+                            },
                         ),
                         10.widthBox,
                         Expanded(
@@ -75,28 +82,28 @@ class _SignupScreenState extends State<SignupScreen> {
                               TextSpan(
                                 text: "I agree to the ",
                                 style: TextStyle(
-                                  fontFamily: bold,
+                                  fontFamily: regular,
                                   color: fontGrey,
                                 )
                               ),
                               TextSpan(
                                   text: termsAndCondition,
                                   style: TextStyle(
-                                    fontFamily: bold,
+                                    fontFamily: regular,
                                     color: redColor,
                                   )
                               ),
                               TextSpan(
                                   text: " & ",
                                   style: TextStyle(
-                                    fontFamily: bold,
+                                    fontFamily: regular,
                                     color: fontGrey,
                                   )
                               ),
                               TextSpan(
                                   text: privacyPolicy,
                                   style: TextStyle(
-                                    fontFamily: bold,
+                                    fontFamily: regular,
                                     color: redColor,
                                   )
                               )
@@ -108,7 +115,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     5.heightBox,
                     customButton(
-                      color: redColor,
+                      color: isCheck==true ? redColor : lightGrey,
                       title: signUp,
                       textColor: whiteColor,
                       onPress: (){},
