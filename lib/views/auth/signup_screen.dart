@@ -1,5 +1,5 @@
 import 'package:emartapp/consts/consts.dart';
-import 'package:emartapp/consts/social_icons_list.dart';
+import 'package:emartapp/consts/lists.dart';
 import 'package:emartapp/consts/strings.dart';
 import 'package:emartapp/views/auth/login_screen.dart';
 import 'package:emartapp/widgets/app_logo_widget.dart';

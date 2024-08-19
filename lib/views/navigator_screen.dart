@@ -1,17 +1,20 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/controller/home_controller.dart';
+import 'package:emartapp/views/cart/cart_screen.dart';
+import 'package:emartapp/views/category/category_screen.dart';
+import 'package:emartapp/views/home/home_screen.dart';
+import 'package:emartapp/views/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class NavigatorScreen extends StatefulWidget {
+  const NavigatorScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<NavigatorScreen> createState() => _NavigatorScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _NavigatorScreenState extends State<NavigatorScreen> {
 
 
   @override
@@ -51,10 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     var navBody =[
-      Container(color: Colors.blue),
-      Container(color: Colors.amber),
-      Container(color: Colors.purple),
-      Container(color: Colors.cyan),
+      const HomeScreen(),
+      const CategoryScreen(),
+      const CartScreen(),
+      const ProfileScreen(),
     ];
 
     return Scaffold(

@@ -1,7 +1,7 @@
 import 'package:emartapp/consts/consts.dart';
-import 'package:emartapp/consts/social_icons_list.dart';
+import 'package:emartapp/consts/lists.dart';
 import 'package:emartapp/views/auth/signup_screen.dart';
-import 'package:emartapp/views/home_screen.dart';
+import 'package:emartapp/views/navigator_screen.dart';
 import 'package:emartapp/widgets/app_logo_widget.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:emartapp/widgets/custom_button.dart';
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     title: logIn,
                     textColor: whiteColor,
                     onPress: (){
-                      Get.to(()=> const HomeScreen());
+                      Get.to(()=> const NavigatorScreen());
                     },
                   ).box.width(context.screenWidth-50).make(),
                   5.heightBox,
