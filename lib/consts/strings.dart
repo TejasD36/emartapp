@@ -1,3 +1,12 @@
-const appname = "eMart";
-const appversion = "Version 1.0.0";
-const credits = "@Baaba Devs";
+const appName = "eMart";
+const appVersion = "Version 1.0.0";
+const credits = "Sp Academy";
+const email = "Email";
+const emailHint = "xyz@gmail.com";
+const password = "Password";
+const passwordHint = "********";
+const forgetPassword = "Forget Password?";
+const logIn = "Log in";
+const signUp = "Sign Up";
+const createNewAccount = "or, create a new Account";
+const logInWith = "Log in with";
