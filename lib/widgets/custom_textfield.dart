@@ -6,7 +6,7 @@ Widget customTextfield({String? title, String? titleHint, controller}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      15.heightBox,
+      10.heightBox,
       title!.text.color(redColor).fontFamily(semibold).size(16).make(),
       5.heightBox,
       TextFormField(
@@ -28,7 +28,7 @@ Widget customTextfield({String? title, String? titleHint, controller}) {
           )
         ),
       ),
-      15.heightBox,
+      10.heightBox,
     ],
   );
 }
