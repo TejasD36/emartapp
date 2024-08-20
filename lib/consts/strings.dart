@@ -52,3 +52,15 @@ const sports = "Sports";
 const jewelery = "Jewelery";
 const cellphone = "Cellphone";
 const furniture = "Furniture";
+
+//Item Screen
+
+const addToCart = "Add to Cart";
+
+const video = "Video";
+const reviews = "Reviews";
+const sellerPolicy = "Seller Policy";
+const returnPolicy = "Return Policy";
+const supportPolicy = "Support Policy";
+
+const productsYouMayLike = "Products you may also Like";

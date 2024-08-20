@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 Widget customButton({onPress, color, textColor,required String title}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
+
       foregroundColor: color,
       backgroundColor: color,
       padding: const EdgeInsets.all(12),

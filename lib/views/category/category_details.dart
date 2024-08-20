@@ -1,6 +1,9 @@
 import 'package:emartapp/consts/consts.dart';
+import 'package:emartapp/views/category/item_details.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class CategoryDetails extends StatefulWidget {
   final String title;
@@ -23,7 +26,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           title: widget.title.text.fontFamily(bold).white.make(),
         ),
         body: Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             children: [
               //SubCategories
@@ -94,7 +97,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                           .roundedSM
                           .padding(const EdgeInsets.all(12))
                           .outerShadowSm
-                          .make();
+                          .make().onTap((){
+                            Get.to(()=> const ItemDetails(title: "Dummy"));
+                      });
                     }),
               ),
             ],
