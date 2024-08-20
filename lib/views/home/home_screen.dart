@@ -265,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Price".text.fontFamily(bold).color(redColor).size(16).make(),
                             10.heightBox,
                           ],
-                        ).box.white.margin(const EdgeInsets.symmetric(horizontal: 8)).roundedSM.padding(const EdgeInsets.all(12)).make();
+                        ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.padding(const EdgeInsets.all(12)).make();
                       }
                     ),
                   ],
