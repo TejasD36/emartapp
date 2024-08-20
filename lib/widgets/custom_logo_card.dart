@@ -1,7 +1,7 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:flutter/cupertino.dart';
 
-Widget customCard ({width, height, icon,String? title, onPress}){
+Widget customLogoCard ({width, height, icon,String? title, onPress}){
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
