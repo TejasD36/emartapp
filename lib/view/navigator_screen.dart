@@ -1,9 +1,9 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/controller/home_controller.dart';
-import 'package:emartapp/views/cart/cart_screen.dart';
-import 'package:emartapp/views/category/category_screen.dart';
-import 'package:emartapp/views/home/home_screen.dart';
-import 'package:emartapp/views/profile/profile_screen.dart';
+import 'package:emartapp/view/cart/cart_screen.dart';
+import 'package:emartapp/view/category/category_screen.dart';
+import 'package:emartapp/view/home/home_screen.dart';
+import 'package:emartapp/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/consts/lists.dart';
-import 'package:emartapp/views/category/category_details.dart';
+import 'package:emartapp/view/category/category_details.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

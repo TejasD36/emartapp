@@ -8,6 +8,8 @@ const email = "Email";
 const emailHint = "xyz@gmail.com";
 const password = "Password";
 const passwordHint = "********";
+const loginSuccessful = "Log In Successful";
+const logoutSuccessful = "Logged out Successful";
 
 //SignUp Screen
 const rePassword = "Retype Password";
@@ -70,3 +72,6 @@ const logout = "Log out";
 const myWishlist = "My Wishlist";
 const myOrders = "My Orders";
 const myMessages = "My Messages";
+const editProfile = "Edit Profile";
+const change = "Change";
+const updateProfile = "Update Profile";

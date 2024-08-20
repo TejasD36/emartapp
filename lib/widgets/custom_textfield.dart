@@ -2,7 +2,7 @@ import 'package:emartapp/consts/consts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget customTextfield({String? title, String? titleHint, controller}) {
+Widget customTextfield({String? title, String? titleHint, controller, isObscure}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -10,6 +10,7 @@ Widget customTextfield({String? title, String? titleHint, controller}) {
       title!.text.color(redColor).fontFamily(semibold).size(16).make(),
       5.heightBox,
       TextFormField(
+        obscureText: isObscure ?? false,
         controller: controller,
         decoration:InputDecoration(
           hintStyle: const TextStyle(
