@@ -64,3 +64,9 @@ const returnPolicy = "Return Policy";
 const supportPolicy = "Support Policy";
 
 const productsYouMayLike = "Products you may also Like";
+
+//Profile screen
+const logout = "Log out";
+const myWishlist = "My Wishlist";
+const myOrders = "My Orders";
+const myMessages = "My Messages";

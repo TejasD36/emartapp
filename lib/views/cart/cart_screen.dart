@@ -1,3 +1,4 @@
+import 'package:emartapp/consts/consts.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.purple,
+      child: "Empty".text.fontFamily(semibold).color(darkFontGrey).makeCentered(),
     );
   }
 }
