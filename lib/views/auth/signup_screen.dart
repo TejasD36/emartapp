@@ -1,6 +1,7 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/consts/lists.dart';
 import 'package:emartapp/consts/strings.dart';
+import 'package:emartapp/controller/auth_controller.dart';
 import 'package:emartapp/views/auth/login_screen.dart';
 import 'package:emartapp/widgets/app_logo_widget.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
@@ -26,6 +27,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   bool? isCheck = false;
 
+  var controller = Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
     return bgWidget(
@@ -35,33 +38,48 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               children: [
                 (context.screenHeight*0.1).heightBox,
+
+                //App Logo
                 appLogoWidget(),
                 10.heightBox,
                 "$signUp to $appName".text.fontFamily(bold).white.size(18).make(),
                 20.heightBox,
+
+
                 Column(
                   children: [
+
+                    //Name
                     customTextfield(
                       title: name,
                       titleHint: nameHint,
                       controller: nameController,
                     ),
+
+                    //Email
                     customTextfield(
                       title: email,
                       titleHint: emailHint,
                       controller: emailController,
                     ),
+
+                    //Password
                     customTextfield(
                       title: password,
                       titleHint: passwordHint,
                       controller: passwordController,
                     ),
+
+                    //Retype Password
                     customTextfield(
                       title: rePassword,
                       titleHint: passwordHint,
                       controller: rePasswordController,
                     ),
+
                     5.heightBox,
+
+                    //Terms & Conditions
                     Row(
                       children: [
                         Checkbox(
@@ -113,7 +131,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         )
                       ],
                     ),
+
                     5.heightBox,
+
+                    //Sign Up Button
                     customButton(
                       color: isCheck==true ? redColor : lightGrey,
                       title: signUp,
@@ -121,6 +142,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       onPress: (){},
                     ).box.width(context.screenWidth-50).make(),
                     10.heightBox,
+
+
                     RichText(
                       text: const TextSpan(
                           children: [
@@ -131,6 +154,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                   color: fontGrey,
                                 )
                             ),
+
+                            //LogIn
                             TextSpan(
                                 text: logIn,
                                 style: TextStyle(

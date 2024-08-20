@@ -1,9 +1,14 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/consts/lists.dart';
+import 'package:emartapp/views/auth/login_screen.dart';
 import 'package:emartapp/views/cart/component/detail_card.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../splash_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -64,7 +69,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: whiteColor,
                         ),
                       ),
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.to(()=>const SplashScreen());
+                      },
                       child: logout.text.fontFamily(semibold).white.make()
                     ),
                   ],
