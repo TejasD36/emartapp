@@ -60,7 +60,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ).onTap((){
 
                         controller.nameController.text = data['name'].toString();
-                        controller.passwordController.text = data['password'].toString();
                         Get.to(()=>EditProfileScreen(data: data,));
                       }),
                     ),

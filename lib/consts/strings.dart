@@ -75,3 +75,5 @@ const myMessages = "My Messages";
 const editProfile = "Edit Profile";
 const change = "Change";
 const updateProfile = "Update Profile";
+const newPassword = "New Password";
+const oldPassword = "Old Password";

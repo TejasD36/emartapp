@@ -88,12 +88,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 controller: controller.nameController,
               ),
 
-              //Password Field
+              //Old Password Field
               customTextfield(
-                // isObscure: true,
+                isObscure: true,
                 titleHint: passwordHint,
-                title: password,
-                controller: controller.passwordController,
+                title: oldPassword,
+                controller: controller.oldPasswordController,
+              ),
+
+              //New Password Field
+              customTextfield(
+                isObscure: true,
+                titleHint: passwordHint,
+                title: newPassword,
+                controller: controller.newPasswordController,
               ),
               20.heightBox,
 
@@ -107,17 +115,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: customButton(
                         title: updateProfile,
                         color: redColor,
-                        textColor: whiteColor,
                         onPress: () async {
                           controller.isLoading(true);
-                          await controller.uploadProfileImage();
-                          await controller.updateProfile(
-                            imgUrl: controller.profileImgLink,
-                            name: controller.nameController.text,
-                            password: controller.passwordController.text,
-                          );
-                          VxToast.show(context, msg: "Profile Updated");
+
+                          // If image is not selected
+                          if(controller.profileImgPath.value.isNotEmpty){
+                            await controller.uploadProfileImage();
+                          }
+                          else{
+                            controller.profileImgLink = widget.data['imageUrl'];
+                          }
+
+
+                          //If old password matches Database
+
+                          if(widget.data['password'] == controller.oldPasswordController.text){
+
+                            await controller.changeAuthPassword(
+                              email: widget.data['email'],
+                              password: controller.oldPasswordController.text,
+                              newPassword: controller.newPasswordController.text,
+                            );
+
+                            await controller.updateProfile(
+                              imgUrl: controller.profileImgLink,
+                              name: controller.nameController.text,
+                              password: controller.newPasswordController.text,
+                            );
+                            VxToast.show(context, msg: "Profile Updated");
+                          }
+                          else{
+                            VxToast.show(context, msg: "Wrong Old Password!");
+                            controller.isLoading(false);
+                          }
                         },
+                        textColor : whiteColor,
                       ),
                     ),
               20.heightBox,
