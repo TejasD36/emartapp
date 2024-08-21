@@ -8,6 +8,7 @@ import 'package:emartapp/widgets/app_logo_widget.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:emartapp/widgets/custom_button.dart';
 import 'package:emartapp/widgets/custom_textfield.dart';
+import 'package:emartapp/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -146,9 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
 
                       controller.isLoading.value
-                          ? const CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(redColor),
-                      )
+                          ? loadingIndicator()
                           : customButton(
                         color: isCheck == true ? redColor : lightGrey,
                         title: signUp,

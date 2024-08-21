@@ -5,6 +5,7 @@ import 'package:emartapp/controller/profile_controller.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:emartapp/widgets/custom_button.dart';
 import 'package:emartapp/widgets/custom_textfield.dart';
+import 'package:emartapp/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -107,9 +108,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
               //Update Profile button
               controller.isLoading.value
-                  ? const CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(redColor),
-                    )
+                  ? loadingIndicator()
                   : SizedBox(
                       width: context.screenWidth - 40,
                       child: customButton(

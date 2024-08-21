@@ -4,6 +4,7 @@ import 'package:emartapp/view/cart/cart_screen.dart';
 import 'package:emartapp/view/category/category_screen.dart';
 import 'package:emartapp/view/home/home_screen.dart';
 import 'package:emartapp/view/profile/profile_screen.dart';
+import 'package:emartapp/widgets/exit_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,27 +61,37 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       const ProfileScreen(),
     ];
 
-    return Scaffold(
-      body: Column(
-        children: [
-          Obx(()=>
-              Expanded(
-                child: navBody.elementAt(controller.currentNavIndex.value)
+    return WillPopScope(
+      onWillPop: ()async{
+        showDialog(
+          barrierDismissible: false,
+            context: context,
+            builder: (context) => exitDialog(context)
+        );
+        return false;
+      },
+      child: Scaffold(
+        body: Column(
+          children: [
+            Obx(()=>
+                Expanded(
+                  child: navBody.elementAt(controller.currentNavIndex.value)
+              ),
             ),
+          ],
+        ),
+        bottomNavigationBar: Obx(()=>
+           BottomNavigationBar(
+             currentIndex: controller.currentNavIndex.value,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: whiteColor,
+            selectedItemColor: redColor,
+            selectedLabelStyle: const TextStyle(fontFamily: semibold),
+            items: navBarItem,
+             onTap: (value){
+              controller.currentNavIndex.value = value;
+             },
           ),
-        ],
-      ),
-      bottomNavigationBar: Obx(()=>
-         BottomNavigationBar(
-           currentIndex: controller.currentNavIndex.value,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: whiteColor,
-          selectedItemColor: redColor,
-          selectedLabelStyle: const TextStyle(fontFamily: semibold),
-          items: navBarItem,
-           onTap: (value){
-            controller.currentNavIndex.value = value;
-           },
         ),
       ),
     );

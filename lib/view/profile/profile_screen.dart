@@ -8,6 +8,7 @@ import 'package:emartapp/view/auth/login_screen.dart';
 import 'package:emartapp/view/cart/component/detail_card.dart';
 import 'package:emartapp/view/profile/edit_profile_screen.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
+import 'package:emartapp/widgets/loading_indicator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,10 +36,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
 
             if(!snapshot.hasData){
-              return const Center(
-               child: CircularProgressIndicator(
-                 valueColor: AlwaysStoppedAnimation(redColor),
-               ),
+              return Center(
+               child: loadingIndicator()
               );
             }
             else{
