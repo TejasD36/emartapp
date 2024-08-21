@@ -1,5 +1,6 @@
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/consts/lists.dart';
+import 'package:emartapp/controller/product_controller.dart';
 import 'package:emartapp/view/category/category_details.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,9 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
+
+    var controller = Get.put(ProductController());
+
     return bgWidget(
         child: Scaffold(
           appBar: AppBar(
@@ -52,6 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     10.heightBox,
                   ],
                 ).box.white.clip(Clip.antiAlias).rounded.outerShadowSm.make().onTap((){
+                  controller.getSubCategories(categoriesList[index]);
                   Get.to(()=> CategoryDetails(title: categoriesList[index]));
                 });
               }

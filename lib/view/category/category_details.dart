@@ -1,4 +1,5 @@
 import 'package:emartapp/consts/consts.dart';
+import 'package:emartapp/controller/product_controller.dart';
 import 'package:emartapp/view/category/item_details.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class CategoryDetails extends StatefulWidget {
 class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
+
+    var controller = Get.find<ProductController>();
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(
@@ -34,9 +37,10 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: List.generate(
-                      6,
-                      (index) => "Cloth1"
+                      controller.subCat.length,
+                      (index) => "${controller.subCat[index]}"
                           .text
                           .size(12)
                           .fontFamily(semibold)
