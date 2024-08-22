@@ -45,6 +45,7 @@ class _CartScreenState extends State<CartScreen> {
               } else {
                 var data = snapshot.data!.docs;
                 controller.calculate(data);
+                controller.productSnapshot = data;
 
                 return Padding(
                   padding: const EdgeInsets.all(8),
@@ -56,6 +57,8 @@ class _CartScreenState extends State<CartScreen> {
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
                                 leading: Image.network(
+                                  width: 80,
+                                  fit: BoxFit.cover,
                                   "${data[index]['img']}",
                                 ),
                                 title: "${data[index]['title']}  (x${data[index]['qty']})"

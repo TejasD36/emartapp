@@ -348,6 +348,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                     qty: controller.quantity.value,
                     sellername: widget.data[0]['p_seller'],
                     title: widget.data[0]['p_name'],
+                    vendorId: widget.data[0]['vendor_id'],
                     tprice: controller.totalPrice.value,
                   );
                 },

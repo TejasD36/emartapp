@@ -12,3 +12,4 @@ const userCollection = "users";
 const productCollection = "products";
 const chatCollection = "chats";
 const messageCollection = "messages";
+const orderCollection = "orders";
