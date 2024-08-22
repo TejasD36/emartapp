@@ -89,3 +89,15 @@ const profileButtonsIcon = [
   icOrder,
   icMessages,
 ];
+
+const paymentMethodsImg = [
+  imgRozarpay,
+  imgPaypal,
+  imgCod,
+];
+
+const paymentMethods = [
+  razorpay,
+  paypal,
+  cod,
+];

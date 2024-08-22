@@ -11,10 +11,16 @@ class CartController extends GetxController{
   var postalCodeController = TextEditingController();
   var phoneController = TextEditingController();
 
+  var paymentIndex = 0.obs;
+
   calculate(data){
     totalP.value = 0;
     for(var i=0; i<data.length; i++){
       totalP.value = totalP.value + int.parse(data[i]['tprice'].toString());
     }
+  }
+
+  changePaymentIndex (index){
+    paymentIndex.value = index;
   }
 }

@@ -77,3 +77,8 @@ const change = "Change";
 const updateProfile = "Update Profile";
 const newPassword = "New Password";
 const oldPassword = "Old Password";
+
+//Payment Methods
+const razorpay = "Razorpay";
+const paypal = "Paypal";
+const cod = "Cash on Delivery";
