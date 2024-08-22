@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:emartapp/consts/colors.dart';
 import 'package:emartapp/consts/consts.dart';
+import 'package:emartapp/view/chat/chat_screen.dart';
 import 'package:emartapp/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,10 +56,24 @@ class _ItemDetailsState extends State<ItemDetails> {
                 Icons.share,
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.favorite_outline,
+            Obx(
+              ()=> IconButton(
+                onPressed: () {
+                  if(controller.isFav.value){
+                    controller.removeFromWishlist(widget.data.id);
+                    controller.isFav(false);
+                  }
+                  else{
+                    controller.addToWishlist(widget.data.id);
+                    controller.isFav(false);
+                  }
+                },
+                icon: Icon(
+                  controller.isFav.value
+                      ? Icons.favorite_outlined
+                      : Icons.favorite_outline
+                  ,
+                ),
               ),
             ),
           ],
@@ -149,7 +164,15 @@ class _ItemDetailsState extends State<ItemDetails> {
                               Icons.message_rounded,
                               color: darkFontGrey,
                             ),
-                          ),
+                          ).onTap((){
+                            Get.to(
+                              () => const ChatScreen(),
+                              arguments: [
+                                widget.data[0]['p_seller'],
+                                widget.data[0]['vendor_id'],
+                              ]
+                            );
+                          }),
                         ],
                       )
                           .box
