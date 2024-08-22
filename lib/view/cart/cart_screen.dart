@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emartapp/consts/consts.dart';
 import 'package:emartapp/controller/cart_controller.dart';
 import 'package:emartapp/service/firestore_service.dart';
+import 'package:emartapp/view/cart/shipping_screen.dart';
 import 'package:emartapp/widgets/custom_button.dart';
 import 'package:emartapp/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  var controller = Get.put(cartController());
+  var controller = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,18 +103,31 @@ class _CartScreenState extends State<CartScreen> {
                           .width(context.screenWidth - 60)
                           .roundedSM
                           .make(),
-                      SizedBox(
-                        width: context.screenWidth - 60,
-                        child: customButton(
-                            color: redColor,
-                            title: "Proceed to Shopping",
-                            textColor: whiteColor,
-                            onPress: () {}),
-                      )
+                      // SizedBox(
+                      //   width: context.screenWidth - 60,
+                      //   child: customButton(
+                      //       color: redColor,
+                      //       title: "Proceed to Shipping",
+                      //       textColor: whiteColor,
+                      //       onPress: () {}),
+                      // )
                     ],
                   ),
                 );
               }
-            }));
+            },
+        ),
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        child: customButton(
+            color: redColor,
+            title: "Proceed to Shipping",
+            textColor: whiteColor,
+            onPress: () {
+              Get.to(() => const ShippingScreen());
+            }
+        ),
+      ),
+    );
   }
 }
