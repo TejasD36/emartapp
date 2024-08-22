@@ -6,7 +6,10 @@ import 'package:emartapp/controller/profile_controller.dart';
 import 'package:emartapp/service/firestore_service.dart';
 import 'package:emartapp/view/auth/login_screen.dart';
 import 'package:emartapp/view/cart/component/detail_card.dart';
+import 'package:emartapp/view/chat/message_screen.dart';
 import 'package:emartapp/view/profile/edit_profile_screen.dart';
+import 'package:emartapp/view/profile/order_screen.dart';
+import 'package:emartapp/view/profile/wishlist_screen.dart';
 import 'package:emartapp/widgets/bg_widget.dart';
 import 'package:emartapp/widgets/loading_indicator.dart';
 import 'package:flutter/foundation.dart';
@@ -155,6 +158,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 22,
                           ),
                           title: profileButtonsList[index].text.fontFamily(semibold).color(darkFontGrey).make(),
+                          onTap: (){
+                            switch(index){
+                              case 0:
+                                Get.to(()=> const OrderScreen());
+                                break;
+                              case 1:
+                                Get.to(()=> const WishlistScreen());
+                                break;
+                              case 2:
+                                Get.to(()=> const MessageScreen());
+                                break;
+                            }
+                          },
                         );
                       },
                     ).box.white.rounded.margin(const EdgeInsets.all(12)).padding(const EdgeInsets.symmetric(horizontal: 16)).shadowSm.make().box.color(redColor).make(),

@@ -341,16 +341,21 @@ class _ItemDetailsState extends State<ItemDetails> {
                 title: addToCart,
                 textColor: whiteColor,
                 onPress: () {
-                  controller.addToCart(
-                    color: widget.data[0]['p_colors'][controller.colourIndex.value],
-                    context: context,
-                    img: widget.data[0]['p_imgs'][0],
-                    qty: controller.quantity.value,
-                    sellername: widget.data[0]['p_seller'],
-                    title: widget.data[0]['p_name'],
-                    vendorId: widget.data[0]['vendor_id'],
-                    tprice: controller.totalPrice.value,
-                  );
+                  if(controller.quantity.value>0){
+                    controller.addToCart(
+                      color: widget.data[0]['p_colors'][controller.colourIndex.value],
+                      context: context,
+                      img: widget.data[0]['p_imgs'][0],
+                      qty: controller.quantity.value,
+                      sellername: widget.data[0]['p_seller'],
+                      title: widget.data[0]['p_name'],
+                      vendorId: widget.data[0]['vendor_id'],
+                      tprice: controller.totalPrice.value,
+                    );
+                  }
+                  else{
+                    VxToast.show(context, msg: "Minimum 1 product is required");
+                  }
                 },
               ),
             ).box.roundedNone.color(redColor).width(double.infinity).make(),
