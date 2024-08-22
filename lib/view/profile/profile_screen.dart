@@ -120,25 +120,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     10.heightBox,
 
                     //Profile Shopping Detail Cards
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        detailCard(
-                          count: data['cart_count'].toString(),
-                          title: "In Your Cart",
-                          width: context.screenWidth /3.4,
-                        ),
-                        detailCard(
-                          count: data['wishlist_count'].toString(),
-                          title: "In Your Wishlists",
-                          width: context.screenWidth /3.4,
-                        ),
-                        detailCard(
-                          count: data['order_count'].toString(),
-                          title: "Your Orders",
-                          width: context.screenWidth /3.4,
-                        )
-                      ],
+                    FutureBuilder(
+                        future: FirestoreService.getCounts(),
+                        builder: (BuildContext context, AsyncSnapshot snapshot){
+                          if(!snapshot.hasData){
+                            return Center(child: loadingIndicator(),);
+                          }
+                          else{
+                            var countData = snapshot.data;
+
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                detailCard(
+                                  count: countData[0].toString(),
+                                  title: "In Your Cart",
+                                  width: context.screenWidth /3.4,
+                                ),
+                                detailCard(
+                                  count: countData[1].toString(),
+                                  title: "In Your Wishlists",
+                                  width: context.screenWidth /3.4,
+                                ),
+                                detailCard(
+                                  count: countData[2].toString(),
+                                  title: "Your Orders",
+                                  width: context.screenWidth /3.4,
+                                )
+                              ],
+                            );
+                          }
+                        }
                     ),
 
                     10.heightBox,
