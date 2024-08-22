@@ -60,12 +60,12 @@ class _ItemDetailsState extends State<ItemDetails> {
               ()=> IconButton(
                 onPressed: () {
                   if(controller.isFav.value){
-                    controller.removeFromWishlist(widget.data.id);
+                    controller.removeFromWishlist(widget.data[0].id,context);
                     controller.isFav(false);
                   }
                   else{
-                    controller.addToWishlist(widget.data.id);
-                    controller.isFav(false);
+                    controller.addToWishlist(widget.data[0].id,context);
+                    controller.isFav(true);
                   }
                 },
                 icon: Icon(
@@ -73,6 +73,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                       ? Icons.favorite_outlined
                       : Icons.favorite_outline
                   ,
+                  color: redColor,
                 ),
               ),
             ),

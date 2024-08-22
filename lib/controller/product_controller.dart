@@ -76,19 +76,32 @@ class ProductController extends GetxController{
     colourIndex.value = 0;
   }
 
-  addToWishlist(docId) async{
+  addToWishlist(docId,context) async{
     await firestore.collection(productCollection).doc(docId).set({
       'p_wishlist':FieldValue.arrayUnion([currentUser!.uid]),
     },SetOptions(merge: true),
     );
+
+    isFav(true);
+    VxToast.show(context, msg: "Added to Wishlist");
   }
 
-  removeFromWishlist(docId) async{
+  removeFromWishlist(docId, context) async{
     await firestore.collection(productCollection).doc(docId).set({
       'p_wishlist':FieldValue.arrayRemove([currentUser!.uid]),
     },SetOptions(merge: true),
     );
+
+    isFav(false);
+    VxToast.show(context, msg: "Removed from Wishlist");
   }
 
-  checkIsFav(data)
+  checkIfFav(data) async{
+    if(data['p_wishlist'].contains(currentUser!.uid)){
+      isFav(true);
+    }
+    else{
+      isFav(false);
+    }
+  }
 }
