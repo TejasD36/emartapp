@@ -17,6 +17,14 @@ class FirestoreService {
         .snapshots();
   }
 
+  //Get Product according to Sub-Category
+  static getSubcategoryProducts(title) {
+    return firestore
+        .collection(productCollection)
+        .where('p_subcategory', isEqualTo: title)
+        .snapshots();
+  }
+
   //Get Cart according to Category
   static getCarts(uid) {
     return firestore
@@ -92,6 +100,24 @@ class FirestoreService {
     return firestore
         .collection(productCollection)
         .snapshots();
+  }
+
+  //Get Featured Products
+  static getFeaturedProducts() {
+    return firestore
+        .collection(productCollection)
+        .where('isFeatured',isEqualTo: true)
+        .get();                 //For FutureBuilder
+        // .snapshots();        //For StreamBuilder
+
+  }
+
+  //Get Searched Products
+  static getSearchedProducts() {
+    return firestore
+        .collection(productCollection)
+        .get();                 //For FutureBuilder
+    // .snapshots();        //For StreamBuilder
   }
 }
 

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emartapp/consts/consts.dart';
+import 'package:emartapp/controller/home_controller.dart';
 import 'package:emartapp/service/firestore_service.dart';
 import 'package:emartapp/view/category/item_details.dart';
+import 'package:emartapp/view/home/search_screen.dart';
 import 'package:emartapp/widgets/custom_image_card.dart';
 import 'package:emartapp/widgets/custom_logo_card.dart';
 import 'package:emartapp/widgets/loading_indicator.dart';
@@ -10,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../consts/lists.dart';
+import '../../controller/product_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,8 +22,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  var productController = Get.put(ProductController());
+
   @override
   Widget build(BuildContext context) {
+
+    var controller = Get.find<HomeController>();
+
     return Container(
       padding: const EdgeInsets.all(12),
       color: lightGrey,
@@ -35,12 +44,17 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 60,
               color: lightGrey,
               child: TextFormField(
-                decoration: const InputDecoration(
+                controller: controller.searchController,
+                decoration: InputDecoration(
                     filled: true,
                     fillColor: whiteColor,
                     hintText: searchAnything,
-                    suffixIcon: Icon(Icons.search),
-                    hintStyle: TextStyle(
+                    suffixIcon: const Icon(Icons.search).onTap((){
+                      if(controller.searchController.text.isNotEmptyAndNotNull){
+                        Get.to(()=>SearchScreen( searchText: controller.searchController.text.toString(),));
+                      }
+                    }),
+                    hintStyle: const TextStyle(
                       color: textfieldGrey,
                     ),
                     suffixIconColor: textfieldGrey,
@@ -80,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-                      //May change later no need to generate list
+
                       children: List.generate(
                           2,
                           (index) => customLogoCard(
@@ -149,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     20.heightBox,
 
-                    //First Featured Category Cards
+                    //Featured Category Cards
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -195,40 +209,66 @@ class _HomeScreenState extends State<HomeScreen> {
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             physics: const BouncingScrollPhysics(),
-                            child: Row(
-                              children: List.generate(
-                                6,
-                                (index) => Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image.asset(
-                                      imgP1,
-                                      width: 150,
-                                      fit: BoxFit.cover,
+                            child: FutureBuilder(
+                              future: FirestoreService.getFeaturedProducts(),
+                              builder: (context,AsyncSnapshot<QuerySnapshot> snapshot) {
+
+                                if(!snapshot.hasData){
+                                  return Center(
+                                    child: loadingIndicator(),
+                                  );
+                                }
+                                else if(snapshot.data!.docs.isEmpty){
+                                  return "No featured Products Available".text.white.makeCentered();
+                                }
+                                else{
+
+                                  var featuredData = snapshot.data!.docs;
+
+                                  return Row(
+                                    children: List.generate(
+                                      featuredData.length,
+                                          (index) => Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Image.network(
+                                            featuredData[index]['p_imgs'][0],
+                                            width: 130,
+                                            height: 130,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          10.heightBox,
+                                          "${featuredData[index]['p_name']}"
+                                              .text
+                                              .fontFamily(semibold)
+                                              .color(darkFontGrey)
+                                              .make(),
+                                          10.heightBox,
+                                          "${featuredData[index]['p_price']}"
+                                              .text
+                                              .fontFamily(bold)
+                                              .color(redColor)
+                                              .size(16)
+                                              .make(),
+                                        ],
+                                      )
+                                          .box
+                                          .white
+                                          .margin(const EdgeInsets.symmetric(
+                                          horizontal: 5))
+                                          .roundedSM
+                                          .padding(const EdgeInsets.all(8))
+                                          .make()
+                                          .onTap(() {
+                                            Get.to(() => ItemDetails(
+                                                title:
+                                                "${featuredData[index]['p_name']}",
+                                                data: featuredData));
+                                          }),
                                     ),
-                                    10.heightBox,
-                                    "Laptop"
-                                        .text
-                                        .fontFamily(semibold)
-                                        .color(darkFontGrey)
-                                        .make(),
-                                    10.heightBox,
-                                    "Price"
-                                        .text
-                                        .fontFamily(bold)
-                                        .color(redColor)
-                                        .size(16)
-                                        .make(),
-                                  ],
-                                )
-                                    .box
-                                    .white
-                                    .margin(const EdgeInsets.symmetric(
-                                        horizontal: 5))
-                                    .roundedSM
-                                    .padding(const EdgeInsets.all(8))
-                                    .make(),
-                              ),
+                                  );
+                                }
+                              }
                             ),
                           ),
                         ],
@@ -317,7 +357,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Get.to(() => ItemDetails(
                                         title:
                                             "${allproductsData[index]['p_name']}",
-                                        data: allproductsData[index]));
+                                        data: allproductsData
+                                    ));
                                   });
                                 });
                           }
